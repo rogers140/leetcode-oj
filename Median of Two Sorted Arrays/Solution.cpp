@@ -28,8 +28,7 @@ public:
 	}
 };
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]){
 	int a[] = {2, 6, 9, 10, 13, 22, 45, 60, 66};
 	int b[] = {7, 9, 12, 25, 27, 36, 55};
 	cout<<(new Solution())->findMedianSortedArrays(a, 9, b, 7)<<endl;

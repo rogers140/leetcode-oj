@@ -11,8 +11,7 @@ public:
         int index1,index2;
         index1=0;
         index2=0;
-        for (int i = 0; i < numbers.size(); ++i)
-        {
+        for (int i = 0; i < numbers.size(); ++i){
         	if (mymap.find(numbers[i]) == mymap.end()){
         		mymap[target-numbers[i]] = i;
         	}
@@ -29,8 +28,7 @@ public:
     }
 };
 
-int main(int argc, const char * argv[])
-{
+int main(int argc, const char * argv[]){
 	int temp[4]={2, 7, 11, 15};
     vector<int> numbers(temp, temp+4);
     vector<int> result=(new Solution())->twoSum(numbers,26);
