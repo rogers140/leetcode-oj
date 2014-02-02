@@ -18,6 +18,7 @@ public:
         if (ret>0x7fffffff) return 0; //overflow check.
         if (neg) return -(int)ret;
         return (int)ret;
+    }
 };
 
 int main(int argc, char const *argv[]){
