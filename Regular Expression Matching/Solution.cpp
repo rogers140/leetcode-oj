@@ -8,30 +8,30 @@ public:
     bool isMatch(const char *s, const char *p) {
     	int repeat = 0;
         while (*s != '\0') {
-        	if(*p == '\0') {
+        	if (*p == '\0') {
         		return false;
         	}
-        	if (*p == '.'){
+        	if (*p == '.') {
         		s++;
         		p++;
         	}
         	else if (*p == '*') {
-        		if(*(p-1) == '.' || *(p-1) == *s){
+        		if (*(p - 1) == '.' || *(p - 1) == *s) {
         			s++;
-        			repeat ++;
+        			repeat++;
         			continue;
         		}
-        		else{
+        		else {
 
-        			if (*(p+1) == *s){//if (*(p+1) == *s || *(p+1) == '.'){
+        			if (*(p + 1) == *s) {//if (*(p + 1) == *s || *(p + 1) == '.'){
         				p++;
         				continue;
         			}
 
         			int MaxLength = repeat + 1;
         			bool match = false;
-        			for (int i = 0; i <= MaxLength; ++i) {
-        				if (isMatch(s-i,p+1)) {
+        			for (int i = 0; i <= MaxLength; i++) {
+        				if (isMatch(s - i,p + 1)) {
         					match  = true;
         					break;
         				}
@@ -44,9 +44,9 @@ public:
         		p++;
         		repeat = 0;
         	}
-        	else{
-        		if (*(p+1) == '*'){
-        			p = p+2;
+        	else {
+        		if (*(p + 1) == '*') {
+        			p = p + 2;
         			repeat = 0;
         		}
         		else {
@@ -54,17 +54,17 @@ public:
         		}
         	}
         }
-        if(*p != '\0') {
-        	if ( *p == '*'){
-        		if (*(p+1) == '\0') {
+        if (*p != '\0') {
+        	if ( *p == '*') {
+        		if (*(p + 1) == '\0') {
         			return true;
         		}
-        		else{
+        		else {
         			int MaxLength = repeat+1;
         			bool match = false;
         			const char *temp = p+1;
-        			for (int i = 0; i<=MaxLength; i++){
-        				if(isMatch(s-i,temp)){
+        			for (int i = 0; i <= MaxLength; i++){
+        				if(isMatch(s - i, temp)){
         					match = true;
         					break;
         				}
@@ -78,12 +78,12 @@ public:
         }
         return true;
     }
-    bool ReEmpty(const char *p){ //check if this regular expr could match empty string
-    	while(*p!='\0'){
-        	if(*(p+1)!='*'){
+    bool ReEmpty(const char *p) { //check if this regular expr could match empty string
+    	while (*p != '\0') {
+        	if (*(p + 1) != '*') {
         		return false;
         	}
-        	p = p+2;
+        	p = p + 2;
         }
         return true;
     }

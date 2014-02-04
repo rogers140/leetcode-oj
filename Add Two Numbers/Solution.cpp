@@ -21,57 +21,57 @@ public:
         			   //int has its own range which could not be overflow
         unordered_map<int, int> hashmap;
         hashmap[1] = 0;
-        while(1){
-        	value = (currentl1->val +currentl2->val + carry)%10;
-        	carry = (currentl1->val +currentl2->val + carry)/10;
+        while (1) {
+        	value = (currentl1->val + currentl2->val + carry) % 10;
+        	carry = (currentl1->val + currentl2->val + carry) / 10;
         	hashmap[digit] = value;
-        	if ((currentl1->next != NULL)&&(currentl2->next != NULL)){//both have more digits
+        	if ((currentl1->next != NULL) && (currentl2->next != NULL)) {//both have more digits
         		currentl1 = currentl1->next;
         		currentl2 = currentl2->next;
-        		digit = digit+1;
+        		digit = digit + 1;
         		continue;
         	}
-        	else{
+        	else {
         		break;
         	}
         }
-        if ((currentl1->next == NULL)&&(currentl2->next == NULL)&&(carry == 1)){
-        	digit = digit+1;
+        if ((currentl1->next == NULL) && (currentl2->next == NULL) && (carry == 1)) {
+        	digit = digit + 1;
         	hashmap[digit] = 1;
         }
-        else if ((currentl1->next == NULL)&&(currentl2->next != NULL)){
-        	while(currentl2->next != NULL){
+        else if ((currentl1->next == NULL) && (currentl2->next != NULL)) {
+        	while (currentl2->next != NULL) {
         		currentl2 = currentl2->next;
-        		value = (currentl2->val + carry)%10;
-        		carry = (currentl2->val + carry)/10;
-        		digit = digit+1;
+        		value = (currentl2->val + carry) % 10;
+        		carry = (currentl2->val + carry) / 10;
+        		digit = digit + 1;
         		hashmap[digit] = value;
         	}
-        	if(carry==1){
-        		digit = digit+1;
+        	if (carry == 1) {
+        		digit = digit + 1;
         		hashmap[digit] = 1;
         	}
         }
-        else if((currentl1->next != NULL)&&(currentl2->next == NULL)){
-        	while(currentl1->next != NULL){
+        else if ((currentl1->next != NULL) && (currentl2->next == NULL)) {
+        	while (currentl1->next != NULL) {
         		currentl1 = currentl1->next;
-        		value = (currentl1->val + carry)%10;
-        		carry = (currentl1->val + carry)/10;
-        		digit = digit+1;
+        		value = (currentl1->val + carry) % 10;
+        		carry = (currentl1->val + carry) / 10;
+        		digit = digit + 1;
         		hashmap[digit] = value;
         	}
-        	if(carry==1){
-        		digit = digit+1;
+        	if (carry == 1) {
+        		digit = digit + 1;
         		hashmap[digit] = 1;
         	}
         }
         ListNode *result, *ptr;
-        result =NULL;
-        while (digit !=0){
+        result = NULL;
+        while (digit != 0) {
         	ptr = new ListNode(hashmap[digit]);
         	ptr->next = result;
         	result = ptr;
-        	digit = digit-1;
+        	digit = digit - 1;
         }
         return result;
     }
@@ -103,7 +103,7 @@ int main(int argc, char const *argv[]) {
 	
 
 	ListNode *result = (new Solution())->addTwoNumbers(&a1, &b1);
-	while(result!=NULL){
+	while (result != NULL) {
 		cout<<result->val<<",";
 		result = result->next;
 	}

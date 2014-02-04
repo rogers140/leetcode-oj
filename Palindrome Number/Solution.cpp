@@ -9,7 +9,7 @@ public:
         	return false;
         if (x < 10)
         	return true;
-        if (x % 10 ==0)
+        if (x % 10 == 0)
         	return false;
         int reverse = 0;
         while (x > reverse){

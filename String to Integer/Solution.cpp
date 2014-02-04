@@ -5,30 +5,30 @@ using namespace std;
 
 class Solution {
 public:
-	int atoi(const char *str){
+	int atoi(const char *str) {
 		int length = strlen(str);
 		int sign = 1;
 		int start = 0;
-		for (int i = 0; i<length; i++){
-			if (str[i] == ' ' || str[i] == 0x9){
-				start ++;
+		for (int i = 0; i < length; i++) {
+			if (str[i] == ' ' || str[i] == 0x9) {
+				start++;
 			}
-			else{
+			else {
 				break;
 			}
 		}
 		if (str[start] == '-') {
 			sign  = -1;
-			start ++;
+			start++;
 		}
 		else if (str[start] == '+') {
 			sign  =  1;
 			start ++;
 		}
 		unsigned int result = 0;
-		for (int i = start; i < length; i++){
+		for (int i = start; i < length; i++) {
 			if (isdigit(str[i])) {
-				int digit =str[i] - '0';
+				int digit = str[i] - '0';
 				if (INT_MAX / 10 >= result)
                 	result *= 10;
             	else
@@ -39,7 +39,7 @@ public:
             	else
                 	return sign == -1 ? INT_MIN : INT_MAX;
 			}
-			else{ //illegal input
+			else { //illegal input
 				break;
 			}
 		}
