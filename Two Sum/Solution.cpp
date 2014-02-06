@@ -22,7 +22,6 @@ public:
         		result.push_back(index2);
         		break;
         	}
-        	
         }
         return result;
     }
