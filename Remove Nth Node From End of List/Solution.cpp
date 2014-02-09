@@ -11,36 +11,25 @@ struct ListNode {
  
 class Solution {
 public:
-    ListNode *removeNthFromEnd(ListNode *head, int n) {//could use two pointer with distance of n
-    	vector<ListNode *> tmp;
-    	ListNode *ptr = head;
-    	for (int i = 0; i < n; ++i) {
-    		tmp.push_back(ptr);
-    		ptr = ptr->next;
-    	}
-    	if (ptr == NULL) {
-    		head = head->next;
+    ListNode *removeNthFromEnd(ListNode *head, int n) {
+    	if (n == 0) {
     		return head;
     	}
-    	while (ptr->next != NULL) {
-    		for (int i = 0; i < n - 1; ++i) {
-    			tmp[i] = tmp[i+1];
-    		}
-    		tmp[n - 1] = ptr;
-    		ptr = ptr->next;
+    	ListNode *front;
+    	ListNode *back;
+    	ListNode *virtual_head = new ListNode(0);
+    	front = virtual_head;
+    	back = virtual_head;
+    	virtual_head->next = head;
+    	for (int i = 0; i < n; ++i) {
+    		front = front->next;
     	}
-    	if (n == 1) {
-    		tmp[0]->next = NULL;
+    	while (front->next != NULL) {
+    		front = front->next;
+    		back = back->next;
     	}
-    	if (n == 2) {
-    		tmp[0]->next = ptr;
-    	}
-    	if (n > 2) {
-    		tmp[0]->next = tmp[2];
-    	}
-    	
-    	return head;
-        
+    	back->next = (back->next)->next;
+        return virtual_head->next;
     }
 };
 
@@ -55,7 +44,7 @@ int main(int argc, char const *argv[]) {
 	node1->next = node2;
 	node2->next = node3;
 	node3->next = node4;
-	ListNode *result = s->removeNthFromEnd(head, 5);
+	ListNode *result = s->removeNthFromEnd(head, 1);
 
 	while (result != NULL) {
 		cout<<result->val<<",";
