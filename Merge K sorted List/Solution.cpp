@@ -104,21 +104,21 @@ int main(int argc, char const *argv[]) {
 	c2->next = c3;
 
 	vector<ListNode *> lists;
-	// lists.push_back(a1);
-	// lists.push_back(b1);
-	// lists.push_back(c1);
-	ListNode *n1 = NULL;
-	ListNode *n2 = NULL;
-	lists.push_back(n1);
-	lists.push_back(n2);
+	lists.push_back(a1);
+	lists.push_back(b1);
+	lists.push_back(c1);
+	// ListNode *n1 = NULL;
+	// ListNode *n2 = NULL;
+	// lists.push_back(n1);
+	// lists.push_back(n2);
 
 	Solution *s = new Solution();
 	ListNode *result = s->mergeKLists(lists);
 
-	// while (result != NULL) {
-	// 	cout<<result->val<<",";
-	// 	result = result->next;
-	// }
-	// cout<<endl;
+	while (result != NULL) {
+		cout<<result->val<<",";
+		result = result->next;
+	}
+	cout<<endl;
 	return 0;
 }
