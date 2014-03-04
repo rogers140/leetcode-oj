@@ -23,6 +23,7 @@ public:
         	result.push_back("");
         	return result;
         }
+        //string current = phone_pad[digits[0]];
         if (digits.size() == 1) {
         	for (int i = 0; i < current.size(); ++i) {
         		string tmp = "";
@@ -48,7 +49,7 @@ public:
 
 int main(int argc, char const *argv[]) {
 	Solution *s = new Solution();
-	vector<string> result = s->letterCombinations("");
+	vector<string> result = s->letterCombinations("1");
 	for (int i = 0; i < result.size(); ++i) {
 		cout<<result[i]<<", ";
 	}
