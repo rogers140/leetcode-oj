@@ -17,7 +17,7 @@ public:
         int last_valid_len;
 
     };
-//最重要的问题就是何时链接两个子串
+//the main problem is to decide when to combine valid substring.
     int longestValidParentheses(string s) {
         if (s.size() == 0)
             return 0;
@@ -50,44 +50,6 @@ public:
         }
         return max_len;
     }
-    int longestValidParentheses1(string parentheses)
-{
-	int start = 0;
-	int count = 0;
-	int max_length = 0;
-
-	for (int index = 0; index < parentheses.length(); ++index)
-	{
-		if (parentheses[index] == '(')
-		{
-			++count;
-		}
-		else
-		{
-			--count;
-		}
-		if (count < 0)
-		{
-			int length = (index) - start;
-			if (length > max_length)
-			{
-				max_length = length;
-			}
-			count = 0;
-			start = index + 1;
-		}
-	}
-	if (count > 0)
-	{
-		int length = parentheses.length() - start - count;
-		if (length > max_length)
-		{
-			max_length = length;
-		}
-	}
-
-	return max_length;
-}
 };
 
 int main(int argc, char const *argv[]) {
