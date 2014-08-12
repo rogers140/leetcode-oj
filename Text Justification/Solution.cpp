@@ -88,13 +88,9 @@ public:
         			justifiedLine.append(words[index]);			
         		}
         		result.push_back(justifiedLine);
-        	}
-        	
+        	}       	
         }
-
-
         return result;
-
     }
 };
 int main(int argc, char const *argv[])
