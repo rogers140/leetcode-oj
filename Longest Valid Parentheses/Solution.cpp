@@ -17,7 +17,7 @@ public:
         int last_valid_len;
 
     };
-//the main problem is to decide when to combine valid substring.
+    //the main problem is to decide when to combine valid substring.
     int longestValidParentheses(string s) {
         if (s.size() == 0)
             return 0;
