@@ -5,6 +5,13 @@
 #include <vector>
 using namespace std;
 //Levenshtein Distance Algorithm
+//convert from recursive to DP
+//consider the last step:
+//1. add
+//2. delete
+//3. replace
+//so we can use recursive and choose the smallest one out three
+//to improve, we use DP to store the distance we have calculated
 class Solution {
 public:
     int minDistance(string word1, string word2) {
