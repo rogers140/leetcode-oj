@@ -23,7 +23,7 @@ public:
         		++countOfNegative;
         	}
         }
-        int minmunWindowSize = lengthOfS;
+        int minimunWindowSize = lengthOfS;
         int minStart = 0;
         int minEnd = lengthOfS - 1;
         bool found = false;
@@ -41,8 +41,8 @@ public:
         	else {
         		found = true;
         		int currentWindowSize = end - start + 1;
-        		if(currentWindowSize < minmunWindowSize) {
-        			minmunWindowSize = currentWindowSize;
+        		if(currentWindowSize < minimunWindowSize) {
+        			minimunWindowSize = currentWindowSize;
         			minStart = start;
         			minEnd = end;
         		}
@@ -59,8 +59,8 @@ public:
         	found = true;
         	while(start != lengthOfS) {
         		int currentWindowSize = end - start + 1;
-        		if(currentWindowSize < minmunWindowSize) {
-        			minmunWindowSize = currentWindowSize;
+        		if(currentWindowSize < minimunWindowSize) {
+        			minimunWindowSize = currentWindowSize;
         			minStart = start;
         			minEnd = end;
         		}
@@ -74,7 +74,7 @@ public:
         	}
         }
         if(found) {
-        	return S.substr(minStart, minmunWindowSize);
+        	return S.substr(minStart, minimunWindowSize);
         }
         else {
         	return "";
