@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 class Solution {
+//needs to be read more
 public:
     bool search(int A[], int n, int target) {
         int l = 0, r = n - 1;
