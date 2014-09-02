@@ -29,7 +29,7 @@ public:
         }
 */
         int cur_2 = 1, cur_1 = 1, cur = 0;
-        for(int i = 2; i < s.size(); ++i) {
+        for(int i = 2; i <= s.size(); ++i) {
         	if(s[i - 1] != '0') {
         		cur += cur_1;
         	}
