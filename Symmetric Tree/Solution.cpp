@@ -10,7 +10,28 @@ struct TreeNode {
 };
 class Solution {
 public:
-    bool isSameTree(TreeNode *p, TreeNode *q) {
+    bool isSymmetric(TreeNode *root) {
+    	if(root == NULL) {
+    		return true;
+    	}
+        if(root->left != NULL) {
+        	if(root->right == NULL) {
+        		return false;
+        	}
+        	else {
+        		return isSymmetricTrees(root->left, root->right);
+        	}
+        }
+        else {
+        	if(root->right == NULL) {
+        		return true;
+        	}
+        	else {
+        		return false;
+        	}
+        }
+    }
+    bool isSymmetricTrees(TreeNode *p, TreeNode *q) {
         vector<TreeNode *> stackP;
         vector<TreeNode *> stackQ;
         TreeNode *currentP = p;
@@ -23,11 +44,11 @@ public:
         		}
         		stackQ.push_back(currentQ);
         		currentP = currentP->left;
-        		currentQ = currentQ->left;
+        		currentQ = currentQ->right;
         	}
-            if(currentQ != NULL) {
-                return false;
-            }
+        	if(currentQ != NULL) {
+        		return false;
+        	}
         	currentP = stackP.back();
         	if(stackQ.size() == 0) {
         		return false;
@@ -39,29 +60,29 @@ public:
         	stackP.pop_back();
         	stackQ.pop_back();
         	currentP = currentP->right;
-        	currentQ = currentQ->right;
+        	currentQ = currentQ->left;
         }
         if(currentQ != NULL || stackQ.size() != 0) {
         	return false;
         }
         return true;
     }
-    bool isSameTree_recursionVersion(TreeNode *p, TreeNode *q) {
-        if (p == NULL && q == NULL) return true;               //Base Case
-        return p && q && (p->val == q->val) && isSameTree_recursionVersion(p->left, q->left) && isSameTree_recursionVersion(p->right, q->right);
-    }
 };
 int main(int argc, char const *argv[])
 {
-    TreeNode *node21 = new TreeNode(2);
-    TreeNode *node22 = new TreeNode(2);
-    TreeNode *node31 = new TreeNode(3);
-    TreeNode *node32 = new TreeNode(3);
-    TreeNode *node41 = new TreeNode(4);
-    node21->right = node31;
-    node22->right = node32;
-    node22->left = node41;
-    Solution *s = new Solution();
-    cout<<s->isSameTree(node21, node22)<<endl;
+	Solution *s = new Solution();
+	TreeNode *node1 = new TreeNode(1);
+	TreeNode *node21 = new TreeNode(2);
+	TreeNode *node22 = new TreeNode(2);
+	TreeNode *node31 = new TreeNode(3);
+	TreeNode *node32 = new TreeNode(3);
+	TreeNode *node41 = new TreeNode(4);
+	node21->right = node31;
+	node22->left = node32;
+	node22->right = node41;
+	node1->left = node21;
+	node1->right = node22;
+
+	cout<<s->isSymmetric(node1)<<endl;
 	return 0;
 }
