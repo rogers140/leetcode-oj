@@ -18,7 +18,7 @@ public:
 int main(int argc, char const *argv[])
 {
 	int price_list[8] = {3, 2, 4, 9, 7, 1, 8, 6};
-	vector<int> prices(&price_list[0], &price_list[7]);
+	vector<int> prices(&price_list[0], &price_list[8]);
 	Solution *s = new Solution();
 	cout<<s->maxProfit(prices)<<endl;
 	return 0;
