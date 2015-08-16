@@ -12,6 +12,7 @@ public:
     end_set.insert(endWord);
     return ladderLength_aux(wordDict, begin_set, end_set, 1);
   }
+  // Bi-directional BFS
   int ladderLength_aux (WordSet& wordDict, WordSet& begin_set, WordSet& end_set, int depth) {
     if (begin_set.empty()) return 0;
     if (begin_set.size() > end_set.size()) {
