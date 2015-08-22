@@ -7,7 +7,7 @@ class Solution {
 public:
 	int minCut(string s) {
 		const int size = s.size();
-		int minCut[size + 1];  // Saves minCut for substring [0: i]
+		int minCut[size + 1];  // Saves minCut for substring [0: i - 1]
 		for (int i = 0; i <= size; ++i) minCut[i] = i - 1;
 		for (int i = 1; i < size; ++i) {
 			for (int j = 0; i - j >= 0 && i + j < size && s[i - j] == s[i + j]; ++j) {
