@@ -7,13 +7,13 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int> > fourSum(vector<int> &num, int target) {
-        sort(num.begin(), num.end());
-        typedef vector<int> quadruplet;
-        vector<quadruplet> result;
-        for (int a = num.size() - 1; a >= 3; --a) {
-        	if (a < num.size() - 1 && num[a] == num[a + 1]) {
-				continue;
-			}
+      sort(num.begin(), num.end());
+      typedef vector<int> quadruplet;
+      vector<quadruplet> result;
+      for (int a = num.size() - 1; a >= 3; --a) {
+        if (a < num.size() - 1 && num[a] == num[a + 1]) {
+				  continue;
+			  }
 			for (int b = a -1; b >= 2; --b) {
 				if (b < a-1 && num[b] == num[b+1]) {
 					continue;

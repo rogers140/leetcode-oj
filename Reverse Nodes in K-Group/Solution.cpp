@@ -22,8 +22,7 @@ public:
         	index = index->next;
         	++length;
         }
-        reverseTimes = length/k;
-
+        reverseTimes = length/k;  // Decides how many groups
         pre = NULL;
         current = head;
         next = NULL;

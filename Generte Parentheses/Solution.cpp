@@ -26,7 +26,7 @@ public:
 
 int main(int argc, char const *argv[]) {
 	Solution *s = new Solution();
-	vector<string> result = s->generateParenthesis(5);
+	vector<string> result = s->generateParenthesis(3);
 	for (int i = 0; i < result.size(); ++i) {
 		cout<<result[i]<<",";
 	}

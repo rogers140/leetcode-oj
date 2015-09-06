@@ -21,10 +21,11 @@ public:
     	front = virtual_head;
     	back = virtual_head;
     	virtual_head->next = head;
-    	for (int i = 0; i < n; ++i) {
+    	for (int i = 0; i < n; ++i) {  // Now front is (size - n) to the end.
     		front = front->next;
     	}
-    	while (front->next != NULL) {
+    	while (front->next != NULL) { // after walking (size - n), back reach (size - n)
+                                      // which is n to the end.
     		front = front->next;
     		back = back->next;
     	}

@@ -1,42 +1,46 @@
-#include <stdio.h>
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 //Manacher Algorithms
 class Solution {
 public:
     string longestPalindrome(string s) {
-        string ModifiedStr = "$#";
+        string modifiedStr = "$#";
         for (int i = 0; i < s.size(); i++) {
-        	ModifiedStr = ModifiedStr + s[i] + "#";
+        	modifiedStr = modifiedStr + s[i] + "#";
         }
-        int ModifiedStrSize = ModifiedStr.size();
-        int *p =new int[ModifiedStrSize];//leetCode oj: int p[4000] = {0} is ok, in case of runtime error
-        int mx = 0, id = 0;
+        const int modifiedStrSize = modifiedStr.size();
+        // p stores the palondrome right length with mid point i.
+        vector<int> p(modifiedStrSize, 0);
+        // maxRight is the right most position the palindromes ever touches
+        // id is the current mid point of a palindromes who reaches maxRight.
+        int maxRight = 0, id = 0;
 
-        for (int i = 1; i < ModifiedStrSize; i++) {
-        	if (mx > i) {
-        		p[i] = (p[2 * id - 1] < (mx - i)) ? p[2 * id - 1] : (mx - i);
+        for (int i = 1; i < modifiedStrSize; i++) {
+        	if (maxRight > i) {
+                // Three conditions together
+        		p[i] = min(p[2*id - i], p[id] + id - i);
         	}
         	else {
         		p[i] = 1;
         	}
-        	while (ModifiedStr[i - p[i]] == ModifiedStr[i + p[i]]) {
+        	while (modifiedStr[i - p[i]] == modifiedStr[i + p[i]]) {
         		p[i]++;
-        		if ((i - p[i]) < 0 || (i + p[i]) >= ModifiedStrSize) {
+        		if ((i - p[i]) < 0 || (i + p[i]) >= modifiedStrSize) {
         			break;
         		}
         	}
-        	p[i]--;
-        	if (i + p[i] > mx) {
-        		mx = i + p[i];
+        	p[i]--;  // delete the bad 1.
+        	if (i + p[i] > maxRight) {
+        		maxRight = i + p[i];
         		id = i;
         		
         	}
         }
-
         int maxlength = 0;
         int middleindex = 0;
-        for (int i = 1; i < ModifiedStrSize; i++) {
+        for (int i = 1; i < modifiedStrSize; i++) {
         	if (p[i] > maxlength){
         		maxlength = p[i];
         		middleindex = i;
@@ -47,13 +51,11 @@ public:
         int end = middleindex + maxlength;
         string result = "";
         for (int i = start; i <= end; i++) {
-        	if (ModifiedStr[i] != '#') {
-            	result+=ModifiedStr[i];
+        	if (modifiedStr[i] != '#') {
+            	result += modifiedStr[i];
         	}
     	}
-    	delete[] p;
         return result;
-
     }
 };
 int main(int argc, char const *argv[]) {

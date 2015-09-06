@@ -5,31 +5,26 @@ using namespace std;
 
 class Solution {
 public:
-    string longestCommonPrefix(vector<string> &strs) {
-    	string result = "";
-    	if (strs.size() == 0) {
-    		return result;
-    	}
-    	else {
-    		result = strs[0];
-    	}
-    	for (int i = 1; i < strs.size(); ++i) {
-    		result = prefixOfTwo(result, strs[i]);
-    	}
-        return result;
-    }
-    string prefixOfTwo(string str1, string str2) {
-    	int size = (str1.size() < str2.size()) ? str1.size() : str2.size();
-    	string ret = "";
-    	for (int i = 0; i < size; ++i) {
-    		if (str1[i] == str2[i]) {
-    			ret += str1[i];
-    		}
-    		else{
-    			break;
-    		}
-    	}
-    	return ret;
+    string longestCommonPrefix(vector<string>& strs) {
+        if (strs.empty()) return "";
+        int shortest_len = strs[0].size();
+        string shortest_str = strs[0];
+        for (string str : strs) {
+            if (str.size() < shortest_len) {
+                shortest_len = str.size();
+                shortest_str = str;
+            }
+        }
+        int longest_length = shortest_str.size();
+        for (string str : strs) {
+            while (str.substr(0, longest_length) !=
+                shortest_str.substr(0, longest_length) &&
+                longest_length > 0) {
+                --longest_length;
+            }
+            if (longest_length == 0) return "";
+        }
+        return shortest_str.substr(0, longest_length);
     }
 };
 

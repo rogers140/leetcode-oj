@@ -15,6 +15,7 @@ public:
 				continue;
 			}
 			for (int y = 0, z = x -1; y < z;) {
+				// 从两边向中间找
 				if (y > 0 && num[y] == num[y - 1]) {
 					++y;
 					continue;

@@ -5,87 +5,31 @@ using namespace std;
 // this is a recursive solution
 class Solution {
 public:
-    bool isMatch(const char *s, const char *p) {
-    	int repeat = 0;
-        while (*s != '\0') {
-        	if (*p == '\0') {
-        		return false;
-        	}
-        	if (*p == '.') {
-        		s++;
-        		p++;
-        	}
-        	else if (*p == '*') {
-        		if (*(p - 1) == '.' || *(p - 1) == *s) {
-        			s++;
-        			repeat++;
-        			continue;
-        		}
-        		else {
-
-        			if (*(p + 1) == *s) {//if (*(p + 1) == *s || *(p + 1) == '.'){
-        				p++;
-        				continue;
-        			}
-
-        			int MaxLength = repeat + 1;
-        			bool match = false;
-        			for (int i = 0; i <= MaxLength; i++) {
-        				if (isMatch(s - i,p + 1)) {
-        					match  = true;
-        					break;
-        				}
-        			}
-        			return match;
-        		}
-        	}
-        	else if (*p == *s) {
-        		s++;
-        		p++;
-        		repeat = 0;
-        	}
-        	else {
-        		if (*(p + 1) == '*') {
-        			p = p + 2;
-        			repeat = 0;
-        		}
-        		else {
-        			return false;
-        		}
-        	}
+    bool findMatch(string &s, string &p, int pos_s, int pos_p) {
+        if (pos_s == -1 && pos_p == -1) {
+            return true;
+        } 
+        if (pos_p== -1 || pos_s < -1) {
+            return false;
         }
-        if (*p != '\0') {
-        	if ( *p == '*') {
-        		if (*(p + 1) == '\0') {
-        			return true;
-        		}
-        		else {
-        			int MaxLength = repeat+1;
-        			bool match = false;
-        			const char *temp = p+1;
-        			for (int i = 0; i <= MaxLength; i++){
-        				if(isMatch(s - i, temp)){
-        					match = true;
-        					break;
-        				}
-        			}
-        			return match;
-        		}
-        	}
-        	else { //*p!='*'
-        		return ReEmpty(p);
-        	}
+        if (p[pos_p] == '.') {
+            return findMatch(s, p, pos_s-1, pos_p-1);
+        } else if (p[pos_p] == '*') {
+            //match zero element
+            if (findMatch(s, p, pos_s, pos_p - 2)) return true;
+            for (int i = pos_s; i>=0 && (p[pos_p-1] =='.' || s[i] == p[pos_p-1]); i--) {
+                if (findMatch(s, p, i - 1, pos_p - 2)) return true;
+            }
+            return false;
+        } else {
+            // match single element
+            return ((s[pos_s] == p[pos_p]) && findMatch(s, p, pos_s-1, pos_p-1)); 
         }
-        return true;
     }
-    bool ReEmpty(const char *p) { //check if this regular expr could match empty string
-    	while (*p != '\0') {
-        	if (*(p + 1) != '*') {
-        		return false;
-        	}
-        	p = p + 2;
-        }
-        return true;
+    bool isMatch(string s, string p) {
+        int len_s = s.size();
+        int len_p = p.size();
+        return findMatch(s, p, len_s - 1, len_p - 1);
     }
 };
 
