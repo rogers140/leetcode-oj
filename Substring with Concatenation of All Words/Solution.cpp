@@ -42,7 +42,7 @@ public:
                 else if (hasFound[S.substr(end, K)] < toFind[S.substr(end, K)])
                     // Found, but not used up quota
                     hasFound[S.substr(end, K)]++, cnt++;
-                else { // Found, but used up quota.
+                else { // Found, but used up quota, remove a word in S until found a same one.
                     while (S.substr(begin, K) != S.substr(end, K))
                         hasFound[S.substr(begin, K)]--, cnt--, begin += K;
                     begin += K;

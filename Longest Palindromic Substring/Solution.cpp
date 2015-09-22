@@ -16,7 +16,7 @@ public:
         // maxRight is the right most position the palindromes ever touches
         // id is the current mid point of a palindromes who reaches maxRight.
         int maxRight = 0, id = 0;
-
+        // O(n)
         for (int i = 1; i < modifiedStrSize; i++) {
         	if (maxRight > i) {
                 // Three conditions together

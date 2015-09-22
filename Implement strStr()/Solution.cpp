@@ -5,6 +5,7 @@
 using namespace std;
 class Solution {
 public:
+  // O(M+N)
   int strStr(string haystack, string needle) {
     if (needle.size() == 0) return 0;
     if (haystack.size() == 0) return -1;

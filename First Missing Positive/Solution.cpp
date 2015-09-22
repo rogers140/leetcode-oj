@@ -9,7 +9,7 @@ public:
     	//positive must be in [1, n + 1]
     	if (n == 0) return 1;
     	for (int i = 0; i < n; ++i) {
-    		//put value (inside [1, n]) into right cell
+    		//put value (inside [1, n]) into right index.
     		if (A[i] > 0 && A[i] <= n && A[i] != i + 1) {
     			if (A[A[i] - 1] != A[i]) {
     				int temp = A[A[i] - 1];

@@ -53,6 +53,7 @@ public:
     int longest = 0;
     int extra=0;
     int length=0;
+    // Use two passes to determin.
     for (int i=0; i<s.size(); i++) {
       // Forward pass
       if (s[i] == '(') {
