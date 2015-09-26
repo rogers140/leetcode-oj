@@ -17,6 +17,7 @@ public:
     	}
     	int i = 0;
     	bool isLast = true;
+        // Last is the special case.
         for(; i < intervals.size(); ++i) {
         	if(intervals[i].start > newInterval.start){
         		isLast = false;
@@ -33,7 +34,7 @@ public:
         		return intervals;
         	}
         }
-        
+        // Common cases.
         if(i > 0) {
         	if(intervals[i - 1].end > newInterval.end) {
         		return intervals;
