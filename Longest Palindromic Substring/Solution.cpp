@@ -32,7 +32,7 @@ public:
         		}
         	}
         	p[i]--;  // delete the bad 1.
-        	if (i + p[i] > maxRight) {
+        	if (i + p[i] > maxRight) {  // updates id and maxRight if needed.
         		maxRight = i + p[i];
         		id = i;
         		

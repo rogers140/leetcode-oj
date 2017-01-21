@@ -2,10 +2,10 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-//not quite understand
 class Solution {
 public:
     int uniquePathsWithObstacles(vector<vector<int> > &obstacleGrid) {
+        // Represents the number of paths reaching the position [i-1] of the current row
         vector<int> array(obstacleGrid[0].size() + 1, 0);
         array[1] = 1;
         for(int i = 0; i < obstacleGrid.size(); ++i) {

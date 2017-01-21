@@ -5,7 +5,7 @@ using namespace std;
 class Solution {
 public:
     int climbStairs(int n) {
-        //using dp method
+        //using dp method, with first three steps as base.
         if(n == 0) {
         	return 1;
         }
